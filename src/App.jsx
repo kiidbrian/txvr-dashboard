@@ -14,7 +14,7 @@ import {
 export default function App() {
   const [selectedFocusArea, setSelectedFocusArea] = useState(0);
 
-  const { userData, loading: loadingDashboard } = useDashboardData("user1");
+  const { userData, loading: loadingDashboard,  } = useDashboardData("user1");
   const { getMovesForFocusArea, loading: loadingRiqs } = useRiqs();
 
   const movesForSelectedArea = getMovesForFocusArea(selectedFocusArea);
@@ -35,6 +35,7 @@ export default function App() {
           selectedIndex={selectedFocusArea}
           onSelect={setSelectedFocusArea}
           loading={loadingDashboard}
+          focusAreaValues={userData?.focus_area}
         />
 
         {/* Conversation Moves + CTA */}

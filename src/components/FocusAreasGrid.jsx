@@ -3,7 +3,7 @@ import { FocusAreaCard } from "./FocusAreaCard";
 import { Skeleton } from "./Skeleton";
 import { FOCUS_AREAS } from "@/constants";
 
-export function FocusAreasGrid({ selectedIndex, onSelect, loading }) {
+export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValues = [] }) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -28,7 +28,7 @@ export function FocusAreasGrid({ selectedIndex, onSelect, loading }) {
         <FocusAreaCard
           key={item}
           title={item}
-          value={(i + 1) * 20}
+          value={focusAreaValues[i] ?? 0}
           isSelected={selectedIndex === i}
           onClick={() => onSelect(i)}
         />

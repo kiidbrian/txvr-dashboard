@@ -1,16 +1,123 @@
-# React + Vite
+# TVXR Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based dashboard for tracking relational intelligence growth and conversation skills development.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Growth Stages Visualization** — Track progress through developmental stages (Egg → Butterfly)
+- **Focus Area Cards** — Interactive gauges showing mastery across 5 focus areas
+- **Conversation Moves** — Segmented progress bars with color-coded score history
+- **Stats Overview** — Key metrics including attempts, practice time, scenarios, and streaks
+- **Loading States** — Shimmer skeletons for smooth data fetching experience
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** + **Vite** — Fast development and builds
+- **Tailwind CSS v4** — Utility-first styling
+- **shadcn/ui** — Accessible UI components
+- **Supabase** — Backend database and authentication
+- **Lucide React** — Icon library
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- Supabase account
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repo-url>
+   cd tvxr-dashboard
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Add your Supabase credentials:
+   ```
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Project Structure
+
+```
+src/
+├── App.jsx                 # Main app component
+├── App.css                 # Global styles + Tailwind config
+├── main.jsx                # App entry point
+├── supabase.js             # Supabase client
+│
+├── components/             # UI Components
+│   ├── index.js            # Barrel exports
+│   ├── ConversationMoves.jsx
+│   ├── FocusAreaCard.jsx
+│   ├── FocusAreasGrid.jsx
+│   ├── Gauge.jsx           # SVG gauge component
+│   ├── GrowthStages.jsx
+│   ├── PracticeCard.jsx
+│   ├── ScoreProgressBar.jsx
+│   ├── Skeleton.jsx        # Loading shimmer
+│   ├── StatCard.jsx
+│   ├── StatsGrid.jsx
+│   ├── TipCard.jsx
+│   └── ui/                 # shadcn/ui components
+│
+├── hooks/                  # Custom React hooks
+│   ├── index.js
+│   ├── useDashboardData.js # Dashboard data fetching
+│   └── useRiqs.js          # RIQ data fetching
+│
+├── constants/              # App constants
+│   └── index.js            # Focus areas, growth stages
+│
+└── lib/
+    └── utils.js            # Utility functions
+```
+
+## Database Schema
+
+### `dashboard` table
+| Column | Type | Description |
+|--------|------|-------------|
+| userid | string | User identifier |
+| total_attempts | number | Total practice attempts |
+| time_practicing | number | Minutes spent practicing |
+| scenarios_played | number | Completed scenarios |
+| growth_streak | number | Current streak |
+| next_steps | string | Recommended focus area |
+
+### `riq` table
+| Column | Type | Description |
+|--------|------|-------------|
+| focus_area | string | Associated focus area |
+| display_label | string | Human-readable move name |
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+
+## License
+
+MIT

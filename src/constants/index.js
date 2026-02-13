@@ -15,3 +15,9 @@ export const GROWTH_STAGES = [
 ];
 
 export const STATUS_LABELS = ["Needs Work", "Developing", "Improving", "Proficient"];
+
+export const BRAND_COLORS = {
+  primary: "#ec5c7f",
+  button: "#e94d75",
+  buttonHover: "#d4446a",
+};

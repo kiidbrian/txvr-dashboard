@@ -61,6 +61,9 @@
 }
 
 :root {
+  --brand-primary: #ec5c7f;
+  --brand-button: #e94d75;
+  --brand-button-hover: #d4446a;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

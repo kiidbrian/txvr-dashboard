@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FocusAreaCard } from "./FocusAreaCard";
 import { Skeleton } from "./Skeleton";
 import { FOCUS_AREAS } from "@/constants";
@@ -23,7 +23,11 @@ export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValu
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+    <div className="mt5">
+      <CardHeader className="px-0">
+        <CardTitle className="text-lg font-bold text-muted-foreground px-0 mb-2">Focus Areas</CardTitle>
+      </CardHeader>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
       {FOCUS_AREAS.map((item, i) => (
         <FocusAreaCard
           key={item}
@@ -33,6 +37,7 @@ export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValu
           onClick={() => onSelect(i)}
         />
       ))}
+      </div>
     </div>
   );
 }

@@ -4,13 +4,14 @@ import "@/App.css";
 import { useDashboardData, useRiqs } from "@/hooks";
 import {
   Header,
+  WelcomeBanner,
   GrowthStages,
   FocusAreasGrid,
   ConversationMoves,
   PracticeCard,
   StatsGrid,
-  TipCard,
 } from "@/components";
+import { FOCUS_AREAS } from "@/constants";
 
 export default function App() {
   const [selectedFocusArea, setSelectedFocusArea] = useState(0);
@@ -26,26 +27,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="w-full max-w-6xl grid gap-6">
-        <Header />
+    <div className="min-h-screen">
+      <Header />
+      <div className="w-full max-w-6xl mx-auto grid gap-6 p-6">
 
         {/* Welcome */}
-        <div className="mb-10">
-          <div className="flex items-center gap-3">
-            <div className="w-14 h-14 rounded-full bg-linear-to-br from-white-600 to-pink-600 flex items-center justify-center text-white text-2xl border-2 border-[var(--brand-primary)] border-b-2">
-              👨🏾
-            </div>
-            <div>
-              <h2 className="text-lg text-(--brand-primary) font-bold">
-                Welcome back, {"Jonas"} 
-              </h2>
-              <p className="text-gray-600">
-                Your transformation journey continues. Keep building your wings!
-              </p>
-            </div>
-          </div>
-        </div>
+        <WelcomeBanner name={userData?.name ?? "Jonas"} />
         {/* Overall Growth */}
         <GrowthStages currentStageIndex={3} />
 
@@ -63,16 +50,12 @@ export default function App() {
           <PracticeCard
             nextSteps={userData?.next_steps}
             onStartPractice={handleStartPractice}
+            selectedFocusArea={FOCUS_AREAS[selectedFocusArea]}
           />
         </div>
 
         {/* Stats */}
         <StatsGrid userData={userData} loading={loadingDashboard} />
-
-        {/* Tip */}
-        <TipCard>
-          Learners reaching <span className="font-bold">"Emerging Butterfly"</span> practiced across at least 3 scenarios per skill.
-        </TipCard>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FocusAreaCard } from "./FocusAreaCard";
+import { CircularProgress } from "./CircularProgress";
 import { Skeleton } from "./Skeleton";
 import { FOCUS_AREAS } from "@/constants";
 
@@ -23,20 +23,32 @@ export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValu
   }
 
   return (
-    <div className="mt5">
+    <div className="mt5 mb-10">
       <CardHeader className="px-0">
         <CardTitle className="text-lg font-bold text-muted-foreground px-0 mb-2">Focus Areas</CardTitle>
       </CardHeader>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-      {FOCUS_AREAS.map((item, i) => (
-        <FocusAreaCard
-          key={item}
-          title={item}
-          value={focusAreaValues[i] ?? 0}
-          isSelected={selectedIndex === i}
-          onClick={() => onSelect(i)}
-        />
-      ))}
+
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 justify-center items-center">
+      {FOCUS_AREAS.map((item, i) => {
+        const isLocked = i === 4;
+        return (
+          <button
+            key={item}
+            type="button"
+            onClick={() => !isLocked && onSelect(i)}
+            className={`rounded-xl p-3 transition ${
+              selectedIndex === i ? "bg-pink-50 ring-2 ring-(--brand-primary)" : ""
+            } ${isLocked ? "cursor-default opacity-80" : "cursor-pointer hover:bg-gray-50"}`}
+          >
+            <CircularProgress
+              percentage={focusAreaValues[i] ?? 0}
+              label={item}
+              ringIndex={i}
+              isLocked={isLocked}
+            />
+          </button>
+        );
+      })}
       </div>
     </div>
   );

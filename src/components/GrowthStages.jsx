@@ -12,10 +12,10 @@ export function GrowthStages({ currentStageIndex = 0 }) {
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-8 md:gap-5">
           {/* Butterfly */}
-          <div className="md:col-span-1 flex flex-col items-center">
+          <div className="md:col-span-1 flex md:flex-col flex-row items-center gap-3">
             <img src={neutralSvg} alt="Growth butterfly" className="w-60 h-60 relative -mt-10" />
-            <p className="text-xs text-center max-w-xs uppercase text-(--brand-primary) font-bold absolute inset-120 md:left-[296px] left-[150px] md:top-[495px]">
-              0/5 transformation<br/> unlocked
+            <p className="text-xs text-center md:text-center uppercase text-(--brand-primary) font-bold whitespace-nowrap md:whitespace-normal absolute top-[505px] left-[65px] md:left-[372px] md:top-[495px]">
+              0/5 transformation unlocked
             </p>
           </div>
 

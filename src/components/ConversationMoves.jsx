@@ -7,16 +7,16 @@ function ScoreLegend() {
   return (
     <div className="flex items-center gap-3 text-xs font-normal">
       <span className="flex items-center gap-1">
-        <span className="w-3 h-3 bg-red-500" />Needs Work
+        <span className="w-3 h-3 rounded-full bg-red-500" />Needs Work
       </span>
       <span className="flex items-center gap-1">
-        <span className="w-3 h-3 bg-orange-500" />Developing
+        <span className="w-3 h-3 rounded-full bg-orange-500" />Developing
       </span>
       <span className="flex items-center gap-1">
-        <span className="w-3 h-3 bg-yellow-500" />Improving
+        <span className="w-3 h-3 rounded-full bg-yellow-500" />Improving
       </span>
       <span className="flex items-center gap-1">
-        <span className="w-3 h-3 bg-green-500" />Proficient
+        <span className="w-3 h-3 rounded-full bg-green-500" />Proficient
       </span>
     </div>
   );
@@ -26,7 +26,7 @@ export function ConversationMoves({ moves, loading }) {
   return (
     <Card className="lg:col-span-3">
       <CardHeader>
-        <CardTitle className="flex items-center justify-center">
+        <CardTitle className="flex items-center justify-start">
           <ScoreLegend />
         </CardTitle>
       </CardHeader>

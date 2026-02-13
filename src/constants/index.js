@@ -3,7 +3,7 @@ export const FOCUS_AREAS = [
   "Recognizing & Regulating Emotion",
   "Listening with Curiosity",
   "Showing Empathy",
-  "Practice All of the Skills",
+  "Practice All Skills",
 ];
 
 export const GROWTH_STAGES = [

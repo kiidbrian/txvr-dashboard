@@ -2,13 +2,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CircleHelp } from "lucide-react";
 
-import eggRing from "@/assets/rings/EGG.svg";
-import caterpillarRing from "@/assets/rings/CATERPILLAR.svg";
-import preCocoonRing from "@/assets/rings/PRE-COCOON.svg";
-import chrysalisRing from "@/assets/rings/CHRYSALIS.svg";
-import butterflyRing from "@/assets/rings/BUTTERFLY.svg";
+import eggStage from "@/assets/butterfly-stages/EGG.svg";
+import caterpillarStage from "@/assets/butterfly-stages/CATERPILLAR.svg";
+import preCocoonStage from "@/assets/butterfly-stages/PRE-COCOON.svg";
+import chrysalisStage from "@/assets/butterfly-stages/CHRYSALIS.svg";
+import butterflyStage from "@/assets/butterfly-stages/BUTTERFLY.svg";
 
-const MINI_RINGS = [eggRing, caterpillarRing, preCocoonRing, chrysalisRing, butterflyRing];
+const MINI_STAGES = [eggStage, caterpillarStage, preCocoonStage, chrysalisStage, butterflyStage];
 
 export function PracticeCard({ nextSteps, onStartPractice, selectedFocusArea }) {
   return (
@@ -16,14 +16,14 @@ export function PracticeCard({ nextSteps, onStartPractice, selectedFocusArea }) 
       {/* Mini ring images row — white background */}
       <div className="bg-white px-4 py-3 border-b border-pink-100">
         <div className="flex items-center justify-center gap-1">
-          {MINI_RINGS.map((ring, i) => (
+          {MINI_STAGES.map((stage, i) => (
             <div key={i} className="flex items-center">
               <img
-                src={ring}
+                src={stage}
                 alt={`Stage ${i + 1}`}
                 className="w-10 h-10 object-contain"
               />
-              {i < MINI_RINGS.length - 1 && (
+              {i < MINI_STAGES.length - 1 && (
                 <span className="text-gray-300 text-xs mx-1">›</span>
               )}
             </div>

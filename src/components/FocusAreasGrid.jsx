@@ -3,7 +3,7 @@ import { CircularProgress } from "./CircularProgress";
 import { Skeleton } from "./Skeleton";
 import { FOCUS_AREAS } from "@/constants";
 
-export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValues = [] }) {
+export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValues = [], allUnlocked = false }) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -30,7 +30,7 @@ export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValu
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 justify-center items-center">
       {FOCUS_AREAS.map((item, i) => {
-        const isLocked = i === 4;
+        const isLocked = i === 4 && !allUnlocked;
         return (
           <button
             key={item}

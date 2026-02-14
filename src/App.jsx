@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "@/App.css";
 
-import { useDashboardData, useRiqs } from "@/hooks";
+import { useDashboardData, useRiqs, useGrowthProgress } from "@/hooks";
 import {
   Header,
   WelcomeBanner,
@@ -18,6 +18,8 @@ export default function App() {
 
   const { userData, loading: loadingDashboard,  } = useDashboardData("user1");
   const { getMovesForFocusArea, loading: loadingRiqs } = useRiqs();
+  const { wingsUnlocked, butterflyState, allUnlocked, unlockedWings } =
+    useGrowthProgress(userData?.focus_area);
 
   const movesForSelectedArea = getMovesForFocusArea(selectedFocusArea);
 
@@ -34,7 +36,11 @@ export default function App() {
         {/* Welcome */}
         <WelcomeBanner name={userData?.name ?? "Jonas"} />
         {/* Overall Growth */}
-        <GrowthStages currentStageIndex={3} />
+        <GrowthStages
+          wingsUnlocked={wingsUnlocked}
+          butterflyState={butterflyState}
+          unlockedWings={unlockedWings}
+        />
 
         {/* Focus Areas */}
         <FocusAreasGrid
@@ -42,6 +48,7 @@ export default function App() {
           onSelect={setSelectedFocusArea}
           loading={loadingDashboard}
           focusAreaValues={userData?.focus_area}
+          allUnlocked={allUnlocked}
         />
 
         {/* Conversation Moves + CTA */}

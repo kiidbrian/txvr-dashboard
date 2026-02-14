@@ -15,7 +15,7 @@ import { useMemo } from "react";
  *   2 wings  → body + 2 highlighted wings
  *   3 wings  → body + 3 highlighted wings
  *   4 wings  → body + 4 highlighted wings (all individual wings)
- *   5 (all)  → FINAL WHOLE BUTTERFLY (full metamorphosis)
+ *   5 (all)  → FINAL WHOLE BUTTERFLY (full metamorphosis) ok
  *
  * "Practice All Skills" unlocks when all 4 base focus areas >= 90.
  */

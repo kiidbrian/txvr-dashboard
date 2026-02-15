@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Settings, Bell, Menu, X } from "lucide-react";
+import logo from "@/assets/transformvxr-logo.png";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,10 +9,10 @@ export function Header() {
   return (
     <header className="w-full bg-white border-b-2 border-(--brand-primary)">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="text-3xl">🦋</div>
+        <div className="flex items-center gap-0">
+          <img src={logo} alt="TransformVXR" className="h-10 w-auto" />
           <h1 className="text-2xl text-black">
-            <span className="font-bold">Transform</span> <span className="font-light">VXR</span>
+            <span className="font-bold">Transform</span><span className="font-light">VXR</span>
           </h1>
         </div>
 

@@ -2,11 +2,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CircleHelp } from "lucide-react";
 
-import eggStage from "@/assets/butterfly-stages/EGG.svg";
-import caterpillarStage from "@/assets/butterfly-stages/CATERPILLAR.svg";
-import preCocoonStage from "@/assets/butterfly-stages/PRE-COCOON.svg";
-import chrysalisStage from "@/assets/butterfly-stages/CHRYSALIS.svg";
-import butterflyStage from "@/assets/butterfly-stages/BUTTERFLY.svg";
+import eggStage from "@/assets/Butterfly-stages/EGG.svg";
+import caterpillarStage from "@/assets/Butterfly-stages/CATERPILLAR.svg";
+import preCocoonStage from "@/assets/Butterfly-stages/PRE-COCOON.svg";
+import chrysalisStage from "@/assets/Butterfly-stages/CHRYSALIS.svg";
+import butterflyStage from "@/assets/Butterfly-stages/BUTTERFLY.svg";
 
 const MINI_STAGES = [eggStage, caterpillarStage, preCocoonStage, chrysalisStage, butterflyStage];
 

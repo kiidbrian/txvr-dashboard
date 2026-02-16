@@ -1,34 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScoreProgressBar } from "./ScoreProgressBar";
 import { Skeleton } from "./Skeleton";
-import { STATUS_LABELS } from "@/constants";
+import { MOVE_DESCRIPTIONS } from "@/constants";
 
-function ScoreLegend() {
-  return (
-    <div className="flex items-center gap-3 text-xs font-normal">
-      <span className="flex items-center gap-1">
-        <span className="w-3 h-3 rounded-full bg-red-500" />Needs Work
-      </span>
-      <span className="flex items-center gap-1">
-        <span className="w-3 h-3 rounded-full bg-orange-500" />Developing
-      </span>
-      <span className="flex items-center gap-1">
-        <span className="w-3 h-3 rounded-full bg-yellow-500" />Improving
-      </span>
-      <span className="flex items-center gap-1">
-        <span className="w-3 h-3 rounded-full bg-green-500" />Proficient
-      </span>
-    </div>
-  );
-}
-
-export function ConversationMoves({ moves, loading }) {
+export function ConversationMoves({ moves, loading, moveColors = [] }) {
   return (
     <Card className="lg:col-span-3">
       <CardHeader>
-        <CardTitle className="flex items-center justify-start">
-          <ScoreLegend />
-        </CardTitle>
+        <CardTitle>Conversation Moves</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {loading ? (
@@ -44,21 +23,24 @@ export function ConversationMoves({ moves, loading }) {
         ) : moves.length === 0 ? (
           <p className="text-sm text-muted-foreground">No moves yet.</p>
         ) : (
-          moves.map((move) => {
-            // Mock scores for demo — replace with real score history
-            const mockScores = Array.from({ length: 4 }, () =>
-              Math.floor(Math.random() * 4)
-            );
-            const latestScore = mockScores[mockScores.length - 1];
+          moves.map((move, i) => {
+            const description = MOVE_DESCRIPTIONS[move];
             return (
               <div key={move}>
-                <div className="flex justify-between text-sm mb-1">
-                  <span>{move}</span>
-                  <span className="text-muted-foreground">
-                    {STATUS_LABELS[latestScore]}
-                  </span>
+                <div className="text-sm mb-1">
+                  <div className="relative group inline-block">
+                    <span className="cursor-pointer underline decoration-dotted underline-offset-2">
+                      {move}
+                    </span>
+                    {description && (
+                      <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute left-0 top-full z-10 mt-1 w-64 rounded-lg bg-white p-3 shadow-lg border">
+                        <p className="font-bold text-sm text-gray-900">{move}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{description}</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <ScoreProgressBar scores={mockScores} />
+                <ScoreProgressBar colors={moveColors[i] ?? []} />
               </div>
             );
           })

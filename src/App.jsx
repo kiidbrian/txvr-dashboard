@@ -39,6 +39,7 @@ export default function App() {
         <GrowthStages
           wingsUnlocked={wingsUnlocked}
           butterflyState={butterflyState}
+          avgPerformance={userData?.avg_performance}
         />
 
         {/* Focus Areas */}
@@ -47,12 +48,17 @@ export default function App() {
           onSelect={setSelectedFocusArea}
           loading={loadingDashboard}
           focusAreaValues={userData?.focus_area}
+          growthLevels={userData?.growth_level}
           allUnlocked={allUnlocked}
         />
 
         {/* Conversation Moves + CTA */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-          <ConversationMoves moves={movesForSelectedArea} loading={loadingRiqs} />
+          <ConversationMoves
+            moves={movesForSelectedArea}
+            loading={loadingRiqs}
+            moveColors={userData?.conversation_moves_color}
+          />
           <PracticeCard
             nextSteps={userData?.next_steps}
             onStartPractice={handleStartPractice}

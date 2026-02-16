@@ -16,7 +16,7 @@ const BUTTERFLY_IMAGES = [
   wholeBodySvg,   // state 5 – full metamorphosis
 ];
 
-export function GrowthStages({ wingsUnlocked = 0, butterflyState = 0 }) {
+export function GrowthStages({ wingsUnlocked = 0, butterflyState = 0, avgPerformance }) {
   const isFullButterfly = butterflyState === 5;
   const label = isFullButterfly
     ? "Full metamorphosis!"
@@ -68,9 +68,9 @@ export function GrowthStages({ wingsUnlocked = 0, butterflyState = 0 }) {
                 </Card>
                 <Card className="border-purple-100">
                   <CardContent className="py-0 text-left">
-                    <p className="text-sm text-muted-foreground mt-1">Status</p>
+                    <p className="text-sm text-muted-foreground mt-1">Avg. Performance</p>
                     <div className="text-lg font-bold text-(--brand-primary)">
-                      {isFullButterfly ? "Fully expressed" : wingsUnlocked === 0 ? "Beginning" : "Growing"}
+                      {`${avgPerformance ?? "—"}%`}
                     </div>
                   </CardContent>
                 </Card>

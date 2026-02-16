@@ -3,7 +3,7 @@ import { CircularProgress } from "./CircularProgress";
 import { Skeleton } from "./Skeleton";
 import { FOCUS_AREAS } from "@/constants";
 
-export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValues = [], allUnlocked = false }) {
+export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValues = [], growthLevels = [], allUnlocked = false }) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -43,7 +43,7 @@ export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValu
             <CircularProgress
               percentage={focusAreaValues[i] ?? 0}
               label={item}
-              ringIndex={i}
+              ringIndex={(growthLevels[i] ?? 1) - 1}
               isLocked={isLocked}
             />
           </button>

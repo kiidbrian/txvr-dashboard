@@ -1,21 +1,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import neutralSvg from "@/assets/NEUTRAL.svg";
-import bodyOnly from "@/assets/BODY ONLY.svg";
-import topLeft from "@/assets/TOP-LEFT.svg";
-import topRight from "@/assets/TOP-RIGHT.svg";
-import bottomLeft from "@/assets/BOTTOM-LEFT.svg";
-import bottomRight from "@/assets/BOTTOM-RIGHT.svg";
-import fullButterfly from "@/assets/FINAL WHOLE BUTTERFLY.svg";
+import templateSvg from "@/assets/wings/NEUTRAL.svg";
+import oneWingSvg from "@/assets/Filled-wings/One-wing.svg";
+import twoWingsSvg from "@/assets/Filled-wings/Two-Wings.svg";
+import threeWingsSvg from "@/assets/Filled-wings/Three-Wings.svg";
+import fourWingsSvg from "@/assets/Filled-wings/four-wings.svg";
+import wholeBodySvg from "@/assets/Filled-wings/Whole-body.svg";
 
-const WING_LAYERS = [
-  { src: topLeft, alt: "Top-left wing", key: "topLeft" },
-  { src: topRight, alt: "Top-right wing", key: "topRight" },
-  { src: bottomLeft, alt: "Bottom-left wing", key: "bottomLeft" },
-  { src: bottomRight, alt: "Bottom-right wing", key: "bottomRight" },
+const BUTTERFLY_IMAGES = [
+  templateSvg,    // state 0 – no wings
+  oneWingSvg,     // state 1
+  twoWingsSvg,    // state 2
+  threeWingsSvg,  // state 3
+  fourWingsSvg,   // state 4
+  wholeBodySvg,   // state 5 – full metamorphosis
 ];
 
-export function GrowthStages({ wingsUnlocked = 0, butterflyState = 0, unlockedWings = {} }) {
+export function GrowthStages({ wingsUnlocked = 0, butterflyState = 0 }) {
   const isFullButterfly = butterflyState === 5;
   const label = isFullButterfly
     ? "Full metamorphosis!"
@@ -35,33 +36,11 @@ export function GrowthStages({ wingsUnlocked = 0, butterflyState = 0, unlockedWi
             {/* Butterfly */}
             <div className="md:col-span-1 flex md:flex-col flex-row items-center gap-3">
               <div className="relative w-60 h-60 -mt-10">
-                {isFullButterfly ? (
-                  <img
-                    src={fullButterfly}
-                    alt="Full butterfly"
-                    className="w-full h-full object-contain"
-                  />
-                ) : (
-                  <>
-                    {/* Base body — always visible */}
-                    <img
-                      src={wingsUnlocked === 0 ? neutralSvg : bodyOnly}
-                      alt="Butterfly body"
-                      className="absolute inset-0 w-full h-full object-contain"
-                    />
-                    {/* Individual wing layers */}
-                    {WING_LAYERS.map((wing) => (
-                      unlockedWings[wing.key] && (
-                        <img
-                          key={wing.key}
-                          src={wing.src}
-                          alt={wing.alt}
-                          className="absolute inset-0 w-full h-full object-contain"
-                        />
-                      )
-                    ))}
-                  </>
-                )}
+                <img
+                  src={BUTTERFLY_IMAGES[butterflyState]}
+                  alt={isFullButterfly ? "Full butterfly" : `Butterfly – ${wingsUnlocked} wings`}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <p className="text-xs text-center md:text-center uppercase text-(--brand-primary) font-bold whitespace-nowrap md:whitespace-normal">
                 {label}

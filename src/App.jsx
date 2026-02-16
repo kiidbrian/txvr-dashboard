@@ -18,7 +18,7 @@ export default function App() {
 
   const { userData, loading: loadingDashboard,  } = useDashboardData("user1");
   const { getMovesForFocusArea, loading: loadingRiqs } = useRiqs();
-  const { wingsUnlocked, butterflyState, allUnlocked, unlockedWings } =
+  const { wingsUnlocked, butterflyState, allUnlocked } =
     useGrowthProgress(userData?.focus_area);
 
   const movesForSelectedArea = getMovesForFocusArea(selectedFocusArea);
@@ -39,7 +39,6 @@ export default function App() {
         <GrowthStages
           wingsUnlocked={wingsUnlocked}
           butterflyState={butterflyState}
-          unlockedWings={unlockedWings}
         />
 
         {/* Focus Areas */}

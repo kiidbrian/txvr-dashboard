@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import templateSvg from "@/assets/wings/NEUTRAL.svg";
+import templateSvg from "@/assets/NEUTRAL.svg";
 import oneWingSvg from "@/assets/Filled-wings/One-wing.svg";
 import twoWingsSvg from "@/assets/Filled-wings/Two-Wings.svg";
 import threeWingsSvg from "@/assets/Filled-wings/Three-Wings.svg";

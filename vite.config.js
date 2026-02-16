@@ -10,8 +10,10 @@ export default defineConfig({
     allowedHosts: ["542466b1a2a5.ngrok-free.app"],
   },
   build: {
+    cssCodeSplit: false,
     rollupOptions: {
       output: {
+        manualChunks: undefined,
         entryFileNames: "dashboard.js",
         assetFileNames: "dashboard.[ext]",
       },

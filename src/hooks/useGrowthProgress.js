@@ -22,12 +22,19 @@ import { useMemo } from "react";
 
 const MASTERY_THRESHOLD = 90;
 
-export function useGrowthProgress(focusAreaValues = []) {
+export function useGrowthProgress(
+  focusAreaValues = [],
+  practiceAllUnlockedOverride = null
+) {
   return useMemo(() => {
     const baseValues = focusAreaValues.slice(0, 4);
 
     const wingsUnlocked = baseValues.filter((v) => (v ?? 0) >= MASTERY_THRESHOLD).length;
-    const allUnlocked = wingsUnlocked === 4;
+    const computedAllUnlocked = wingsUnlocked === 4;
+    const allUnlocked =
+      typeof practiceAllUnlockedOverride === "boolean"
+        ? practiceAllUnlockedOverride
+        : computedAllUnlocked;
 
     // 0-4 = incremental wings, 5 = full butterfly
     const butterflyState = allUnlocked ? 5 : wingsUnlocked;
@@ -37,5 +44,5 @@ export function useGrowthProgress(focusAreaValues = []) {
       butterflyState,   // 0–5
       allUnlocked,      // boolean – unlocks "Practice All Skills"
     };
-  }, [focusAreaValues]);
+  }, [focusAreaValues, practiceAllUnlockedOverride]);
 }

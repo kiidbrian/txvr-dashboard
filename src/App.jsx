@@ -13,30 +13,38 @@ import {
 } from "@/components";
 import { FOCUS_AREAS } from "@/constants";
 
-export default function App() {
+export default function App({ userId }) {
   const [selectedFocusArea, setSelectedFocusArea] = useState(0);
 
-  const { userData, loading: loadingDashboard,  } = useDashboardData("user1");
+  const { userData, loading: loadingDashboard } = useDashboardData(userId);
   const { getMovesForFocusArea, loading: loadingRiqs } = useRiqs();
   const { wingsUnlocked, butterflyState, allUnlocked } =
-    useGrowthProgress(userData?.focus_area);
+    useGrowthProgress(userData?.focus_area, userData?.practice_all_unlocked);
 
   const movesForSelectedArea = getMovesForFocusArea(selectedFocusArea);
+  const selectedFocusAreaName = FOCUS_AREAS[selectedFocusArea] ?? null;
 
   const handleStartPractice = () => {
-    // TODO: Implement practice start logic (e.g., open modal with iframe)
-    console.log("Starting practice...");
+    const detail = {
+      userId: userData?.userid ?? userId ?? null,
+      selectedFocusArea: selectedFocusAreaName,
+      nextStep: userData?.next_steps ?? null,
+    };
+
+    window.dispatchEvent(
+      new CustomEvent("tvxr-dashboard:start-practice", { detail })
+    );
   };
 
   return (
     <div className="min-h-screen">
       <Header />
       <div className="w-full max-w-6xl mx-auto grid gap-6 p-6">
-
         {/* Welcome */}
         <WelcomeBanner name={userData?.name ?? "Jonas"} />
         {/* Overall Growth */}
         <GrowthStages
+          loading={loadingDashboard}
           wingsUnlocked={wingsUnlocked}
           butterflyState={butterflyState}
           avgPerformance={userData?.avg_performance}
@@ -60,9 +68,9 @@ export default function App() {
             moveColors={userData?.conversation_moves_color}
           />
           <PracticeCard
+            loading={loadingDashboard}
             nextSteps={userData?.next_steps}
             onStartPractice={handleStartPractice}
-            selectedFocusArea={FOCUS_AREAS[selectedFocusArea]}
           />
         </div>
 

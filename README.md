@@ -55,6 +55,59 @@ A React-based dashboard for tracking relational intelligence growth and conversa
    npm run dev
    ```
 
+## Host App User Wiring (`tvxr-app`)
+
+When this dashboard is mounted inside `tvxr-app`, it reads the active user from the host in this priority order:
+
+1. `data-user-id` on `#dashboard-root`
+2. `window.tvxrDashboardConfig.userId`
+3. `window.TVXR_DASHBOARD_USER_ID`
+4. `?userId=` query string
+
+If none are provided, it falls back to `user1` for local development.
+
+### Runtime user change
+
+If `tvxr-app` switches users while the dashboard is mounted, dispatch:
+
+```js
+window.dispatchEvent(
+  new CustomEvent("tvxr-dashboard:set-user", {
+    detail: { userId: "new-user-id" },
+  })
+);
+```
+
+### Start practice event
+
+When the learner clicks `Start Practise`, the dashboard dispatches:
+
+```js
+window.addEventListener("tvxr-dashboard:start-practice", (event) => {
+  const { userId, selectedFocusArea, nextStep } = event.detail;
+  // host app routes to practice flow here
+});
+```
+
+## Dashboard Metrics Edge Function
+
+The dashboard now fetches metrics from a Supabase Edge Function instead of querying the `dashboard` table directly.
+
+- Env var: `VITE_DASHBOARD_METRICS_FUNCTION`
+- Default function name when env is not set:
+  - `dashboard-metrics`
+- Request payload sent:
+  - `userId`
+  - `user_id`
+  - `userid`
+
+The hook accepts either:
+- a single object response, or
+- an array response (`[{...}]`), or
+- wrapped responses (`{ data: ... }`, `{ rows: ... }`, `{ metrics: ... }`)
+
+and maps the returned fields into dashboard UI keys (attempts, time, streak, focus areas, growth levels, move colors, next steps, etc.).
+
 ## Project Structure
 
 ```

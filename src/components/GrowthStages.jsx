@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "./Skeleton";
 
 import templateSvg from "@/assets/NEUTRAL.svg";
 import oneWingSvg from "@/assets/Filled-wings/One-wing.svg";
@@ -16,7 +17,57 @@ const BUTTERFLY_IMAGES = [
   wholeBodySvg,   // state 5 – full metamorphosis
 ];
 
-export function GrowthStages({ wingsUnlocked = 0, butterflyState = 0, avgPerformance }) {
+export function GrowthStages({
+  loading = false,
+  wingsUnlocked = 0,
+  butterflyState = 0,
+  avgPerformance,
+}) {
+  if (loading) {
+    return (
+      <div>
+        <CardHeader className="px-0">
+          <CardTitle className="text-lg font-bold text-muted-foreground px-0 mb-2">
+            Overall Relational Growth Progress
+          </CardTitle>
+        </CardHeader>
+
+        <Card className="bg-transparent py-10">
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-8 md:gap-5">
+              <div className="md:col-span-1 flex md:flex-col flex-row items-center gap-3">
+                <Skeleton className="w-60 h-60 rounded-full" />
+                <Skeleton className="h-4 w-36" />
+              </div>
+
+              <div className="md:col-span-3 grid grid-cols-1 gap-4">
+                <div className="mb-5 space-y-2">
+                  <Skeleton className="h-6 w-56" />
+                  <Skeleton className="h-4 w-full max-w-xl" />
+                  <Skeleton className="h-4 w-full max-w-lg" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <Card className="border-pink-100">
+                    <CardContent className="py-0 text-left space-y-2">
+                      <Skeleton className="h-4 w-24 mt-2" />
+                      <Skeleton className="h-6 w-16 mb-2" />
+                    </CardContent>
+                  </Card>
+                  <Card className="border-purple-100">
+                    <CardContent className="py-0 text-left space-y-2">
+                      <Skeleton className="h-4 w-28 mt-2" />
+                      <Skeleton className="h-6 w-16 mb-2" />
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   const isFullButterfly = butterflyState === 5;
   const label = isFullButterfly
     ? "Full metamorphosis!"

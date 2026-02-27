@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CircleHelp } from "lucide-react";
+import { Skeleton } from "./Skeleton";
 
 import eggStage from "@/assets/Butterfly-stages/EGG.svg";
 import caterpillarStage from "@/assets/Butterfly-stages/CATERPILLAR.svg";
@@ -10,7 +11,37 @@ import butterflyStage from "@/assets/Butterfly-stages/BUTTERFLY.svg";
 
 const MINI_STAGES = [eggStage, caterpillarStage, preCocoonStage, chrysalisStage, butterflyStage];
 
-export function PracticeCard({ nextSteps, onStartPractice, selectedFocusArea }) {
+export function PracticeCard({
+  loading = false,
+  nextSteps,
+  onStartPractice,
+}) {
+  if (loading) {
+    return (
+      <Card className="border-pink-100 overflow-hidden bg-pink-50 py-0">
+        <div className="bg-white px-4 py-3 border-b border-pink-100">
+          <div className="flex items-center justify-center gap-2">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Skeleton key={i} className="w-10 h-10 rounded-full" />
+            ))}
+          </div>
+        </div>
+
+        <CardContent className="flex h-full flex-col items-center gap-5 py-8 px-2 bg-pink-50 rounded-t-xl">
+          <Skeleton className="w-16 h-16 rounded-full mb-2" />
+          <Skeleton className="h-4 w-56" />
+          <Skeleton className="h-4 w-48 mb-6" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const hasNextStep = Boolean(nextSteps?.trim?.());
+  const placeholderText =
+    "No practice recommendation yet. Complete more activity to generate next steps.";
+
   return (
     <Card className="border-pink-100 overflow-hidden bg-pink-50 py-0">
       {/* Mini ring images row — white background */}
@@ -46,11 +77,17 @@ export function PracticeCard({ nextSteps, onStartPractice, selectedFocusArea }) 
         </div>
 
         {/* Focus text */}
-        <p className="text-xs text-center text-gray-700 px-2 mb-10">
-          Focus on{" "}
-          <span className="font-bold">{`"${nextSteps ?? selectedFocusArea ?? "Taking Perspective"}"`}</span>{" "}
-          in a conflict scenario. Give it a try!
-        </p>
+        {hasNextStep ? (
+          <p className="text-xs text-center text-gray-700 px-2 mb-10">
+            Focus on{" "}
+            <span className="font-bold">{`"${nextSteps}"`}</span>{" "}
+            in a conflict scenario. Give it a try!
+          </p>
+        ) : (
+          <div className="text-xs text-center text-gray-600 px-3 mb-10 bg-white/70 border border-pink-100 rounded-lg py-3">
+            {placeholderText}
+          </div>
+        )}
 
         {/* Start Practice button */}
         <Button

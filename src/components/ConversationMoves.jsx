@@ -3,7 +3,12 @@ import { ScoreProgressBar } from "./ScoreProgressBar";
 import { Skeleton } from "./Skeleton";
 import { MOVE_DESCRIPTIONS } from "@/constants";
 
-export function ConversationMoves({ moves, loading, moveColors = [] }) {
+export function ConversationMoves({
+  moves,
+  loading,
+  moveColors = [],
+  onMoveHoverChange,
+}) {
   return (
     <Card className="lg:col-span-3">
       <CardHeader>
@@ -28,12 +33,16 @@ export function ConversationMoves({ moves, loading, moveColors = [] }) {
             return (
               <div key={move}>
                 <div className="text-sm mb-1">
-                  <div className="relative group inline-block">
+                  <div
+                    className="relative group inline-block"
+                    onMouseEnter={() => onMoveHoverChange?.(true)}
+                    onMouseLeave={() => onMoveHoverChange?.(false)}
+                  >
                     <span className="cursor-pointer underline decoration-dotted underline-offset-2">
                       {move}
                     </span>
                     {description && (
-                      <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute left-0 top-full z-10 mt-1 w-64 rounded-lg bg-white p-3 shadow-lg border">
+                      <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute left-0 top-full z-50 mt-1 w-64 rounded-lg bg-white p-3 shadow-lg border">
                         <p className="font-bold text-sm text-gray-900">{move}</p>
                         <p className="text-xs text-muted-foreground mt-1">{description}</p>
                       </div>

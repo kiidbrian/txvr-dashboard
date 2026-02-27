@@ -15,6 +15,7 @@ import { FOCUS_AREAS } from "@/constants";
 
 export default function App({ userId }) {
   const [selectedFocusArea, setSelectedFocusArea] = useState(0);
+  const [isMoveHovering, setIsMoveHovering] = useState(false);
 
   const { userData, loading: loadingDashboard } = useDashboardData(userId);
   const { getMovesForFocusArea, loading: loadingRiqs } = useRiqs();
@@ -37,7 +38,10 @@ export default function App({ userId }) {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      {isMoveHovering && (
+        <div className="fixed inset-0 bg-[#0A0A0A1F] pointer-events-none z-30" />
+      )}
       <Header />
       <div className="w-full max-w-6xl mx-auto grid gap-6 p-6">
         {/* Welcome */}
@@ -66,6 +70,7 @@ export default function App({ userId }) {
             moves={movesForSelectedArea}
             loading={loadingRiqs}
             moveColors={userData?.conversation_moves_color}
+            onMoveHoverChange={setIsMoveHovering}
           />
           <PracticeCard
             loading={loadingDashboard}

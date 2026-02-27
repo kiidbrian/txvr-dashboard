@@ -3,6 +3,7 @@ import caterpillarRing from "@/assets/rings/CATERPILLAR.svg";
 import preCocoonRing from "@/assets/rings/PRE-COCOON.svg";
 import chrysalisRing from "@/assets/rings/CHRYSALIS.svg";
 import butterflyRing from "@/assets/rings/BUTTERFLY.svg";
+import lockedRing from "@/assets/RING-CATERPILLAR 1.svg";
 
 const RING_IMAGES = [
   eggRing,
@@ -18,7 +19,7 @@ export function CircularProgress({
   ringIndex = 0,
   isLocked = false,
 }) {
-  const ringSrc = RING_IMAGES[ringIndex] ?? eggRing;
+  const ringSrc = isLocked ? lockedRing : RING_IMAGES[ringIndex] ?? eggRing;
 
   return (
     <div className="flex flex-col items-center gap-2">
@@ -27,7 +28,7 @@ export function CircularProgress({
         <img
           src={ringSrc}
           alt={`${label} ring`}
-          className={`absolute inset-0 w-full h-full object-contain ${isLocked ? "grayscale opacity-60" : ""}`}
+          className="absolute inset-0 w-full h-full object-contain"
         />
         <div className="relative flex flex-col items-center justify-center text-center">
           {isLocked ? (

@@ -85,8 +85,8 @@ export function GrowthStages({
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-8 md:gap-5">
             {/* Butterfly */}
-            <div className="md:col-span-1 flex md:flex-col flex-row items-center gap-3">
-              <div className="relative w-60 h-60 -mt-10">
+            <div className="md:col-span-1 flex flex-col items-center gap-3">
+              <div className="relative w-72 h-72 md:w-60 md:h-60 -mt-6 md:-mt-10">
                 <img
                   src={BUTTERFLY_IMAGES[butterflyState]}
                   alt={isFullButterfly ? "Full butterfly" : `Butterfly – ${wingsUnlocked} wings`}

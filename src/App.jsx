@@ -45,7 +45,7 @@ export default function App({ userId }) {
       <Header />
       <div className="w-full max-w-6xl mx-auto grid gap-6 p-6">
         {/* Welcome */}
-        <WelcomeBanner name={userData?.name ?? "Jonas"} />
+        <WelcomeBanner name={userData?.name} />
         {/* Overall Growth */}
         <GrowthStages
           loading={loadingDashboard}

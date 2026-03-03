@@ -111,7 +111,7 @@ export function GrowthStages({
               <div className="grid grid-cols-2 gap-4">
                 <Card className="border-pink-100">
                   <CardContent className="py-0 text-left">
-                    <p className="text-sm text-muted-foreground mt-1">Wings unlocked</p>
+                    <p className="text-sm text-muted-foreground mt-1">Parts unlocked</p>
                     <div className="text-lg font-bold text-(--brand-primary)">
                       {isFullButterfly ? "5/5 ✨" : `${wingsUnlocked}/5`}
                     </div>

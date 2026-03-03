@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScoreProgressBar } from "./ScoreProgressBar";
 import { Skeleton } from "./Skeleton";
 import { MOVE_DESCRIPTIONS } from "@/constants";
+import { HoverTooltip } from "./HoverTooltip";
 
 export function ConversationMoves({
   moves,
@@ -12,7 +13,12 @@ export function ConversationMoves({
   return (
     <Card className="lg:col-span-3">
       <CardHeader>
-        <CardTitle>Conversation Moves</CardTitle>
+        <HoverTooltip
+          title="Conversation Moves"
+          description="Observable behaviors in a conversation (what is said, how it is said, or when it is said) that are either relationally supportive (connection-building) or disruptive (connection-eroding)."
+        >
+          <CardTitle className="cursor-help">Conversation Moves</CardTitle>
+        </HoverTooltip>
       </CardHeader>
       <CardContent className="space-y-4">
         {loading ? (
@@ -33,21 +39,15 @@ export function ConversationMoves({
             return (
               <div key={move}>
                 <div className="text-sm mb-1">
-                  <div
-                    className="relative group inline-block"
-                    onMouseEnter={() => onMoveHoverChange?.(true)}
-                    onMouseLeave={() => onMoveHoverChange?.(false)}
+                  <HoverTooltip
+                    title={move}
+                    description={description}
+                    onHoverChange={onMoveHoverChange}
                   >
                     <span className="cursor-pointer underline decoration-dotted underline-offset-2">
                       {move}
                     </span>
-                    {description && (
-                      <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute left-0 top-full z-50 mt-1 w-64 rounded-lg bg-white p-3 shadow-lg border">
-                        <p className="font-bold text-sm text-gray-900">{move}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{description}</p>
-                      </div>
-                    )}
-                  </div>
+                  </HoverTooltip>
                 </div>
                 <ScoreProgressBar colors={moveColors[i] ?? []} />
               </div>

@@ -40,6 +40,7 @@ export function StatsGrid({ userData, loading }) {
           subtitle="This week"
           icon={Target}
           iconColor="text-(--brand-primary)"
+          tooltipDescription="the number of times you submit a response, receive feedback, and then try again."
         />
         <StatCard
           label="Time Practicing"
@@ -47,13 +48,15 @@ export function StatsGrid({ userData, loading }) {
           subtitle="This week"
           icon={TrendingUp}
           iconColor="text-(--brand-primary)"
+          tooltipDescription="the number of times you submit a response, receive feedback, and then try again."
         />
         <StatCard
-          label="Scenarios Played"
+          label="Variant play"
           value={userData?.scenarios_played || 0}
           subtitle="Keep going!"
           icon={ThumbsUp}
           iconColor="text-(--brand-primary)"
+          tooltipDescription="Each time you pick a new character, personality, or scenario"
         />
         <StatCard
           label="Growth Streak"

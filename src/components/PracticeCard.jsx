@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CircleHelp } from "lucide-react";
 import { Skeleton } from "./Skeleton";
+import { HoverTooltip } from "./HoverTooltip";
 
 import eggStage from "@/assets/Butterfly-stages/EGG.svg";
 import caterpillarStage from "@/assets/Butterfly-stages/CATERPILLAR.svg";
@@ -9,7 +10,13 @@ import preCocoonStage from "@/assets/Butterfly-stages/PRE-COCOON.svg";
 import chrysalisStage from "@/assets/Butterfly-stages/CHRYSALIS.svg";
 import butterflyStage from "@/assets/Butterfly-stages/BUTTERFLY.svg";
 
-const MINI_STAGES = [eggStage, caterpillarStage, preCocoonStage, chrysalisStage, butterflyStage];
+const MINI_STAGES = [
+  { src: eggStage, label: "Egg", detail: "0-25%" },
+  { src: caterpillarStage, label: "Caterpillar", detail: "26-60%" },
+  { src: preCocoonStage, label: "Pre-Cocoon", detail: "61-89%" },
+  { src: chrysalisStage, label: "Chrysalis", detail: "90-100% (at least 2 variants)" },
+  { src: butterflyStage, label: "Butterfly", detail: "90-100% (3+ variants)" },
+];
 
 export function PracticeCard({
   loading = false,
@@ -49,11 +56,13 @@ export function PracticeCard({
         <div className="flex items-center justify-center gap-1">
           {MINI_STAGES.map((stage, i) => (
             <div key={i} className="flex items-center">
-              <img
-                src={stage}
-                alt={`Stage ${i + 1}`}
-                className="w-10 h-10 object-contain"
-              />
+              <HoverTooltip title={stage.label} description={stage.detail}>
+                <img
+                  src={stage.src}
+                  alt={`${stage.label} stage`}
+                  className="w-10 h-10 object-contain"
+                />
+              </HoverTooltip>
               {i < MINI_STAGES.length - 1 && (
                 <span className="text-gray-300 text-xs mx-1">›</span>
               )}
@@ -94,14 +103,14 @@ export function PracticeCard({
           className="w-full bg-(--brand-button) hover:bg-(--brand-button-hover) text-white font-semibold py-5 text-base"
           onClick={onStartPractice}
         >
-          Start Practise
+          Start Practice
         </Button>
 
         {/* Tip */}
         <div className="flex items-start gap-2 bg-pink-100/70 rounded-lg p-1 w-full">
           <CircleHelp className="h-4 w-4 text-pink-400 mt-0.5 shrink-0" />
           <p className="text-xs text-gray-600">
-            <span className="font-semibold">Tip:</span> Learners reaching "Emerging Butterfly" practiced across at least 3 scenarios per skill.
+            <span className="font-semibold"></span>Learners reaching the Butterfly stage practiced at least 3 variants.
           </p>
         </div>
       </CardContent>

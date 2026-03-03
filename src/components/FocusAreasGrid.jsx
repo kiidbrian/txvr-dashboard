@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CircularProgress } from "./CircularProgress";
 import { Skeleton } from "./Skeleton";
 import { FOCUS_AREAS } from "@/constants";
+import { HoverTooltip } from "./HoverTooltip";
 
 export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValues = [], growthLevels = [], allUnlocked = false }) {
   if (loading) {
@@ -25,7 +26,14 @@ export function FocusAreasGrid({ selectedIndex, onSelect, loading, focusAreaValu
   return (
     <div className="mt5 mb-10">
       <CardHeader className="px-0">
-        <CardTitle className="text-lg font-bold text-muted-foreground px-0 mb-2">Focus Areas</CardTitle>
+        <HoverTooltip
+          title="Focus Areas"
+          description="The core skill sets that together make up your overall communication skill"
+        >
+          <CardTitle className="text-lg font-bold text-muted-foreground px-0 mb-2 cursor-help">
+            Focus Areas
+          </CardTitle>
+        </HoverTooltip>
       </CardHeader>
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 justify-center items-center">

@@ -11,3 +11,4 @@ export {PracticeCard} from "./PracticeCard";
 export {TipCard} from "./TipCard";
 export {Header} from "./Header";
 export {WelcomeBanner} from "./WelcomeBanner";
+export {HoverTooltip} from "./HoverTooltip";

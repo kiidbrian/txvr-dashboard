@@ -40,7 +40,10 @@ export function StatsGrid({ userData, loading }) {
           subtitle="This week"
           icon={Target}
           iconColor="text-(--brand-primary)"
-          tooltipDescription="the number of times you submit a response, receive feedback, and then try again."
+          tooltipDescription={
+            userData?.key_metrics_details?.total_attempts ??
+            "the number of times you submit a response, receive feedback, and then try again."
+          }
         />
         <StatCard
           label="Time Practicing"
@@ -48,7 +51,10 @@ export function StatsGrid({ userData, loading }) {
           subtitle="This week"
           icon={TrendingUp}
           iconColor="text-(--brand-primary)"
-          tooltipDescription="the number of times you submit a response, receive feedback, and then try again."
+          tooltipDescription={
+            userData?.key_metrics_details?.time_practicing ??
+            "the number of times you submit a response, receive feedback, and then try again."
+          }
         />
         <StatCard
           label="Variant play"
@@ -56,7 +62,10 @@ export function StatsGrid({ userData, loading }) {
           subtitle="Keep going!"
           icon={ThumbsUp}
           iconColor="text-(--brand-primary)"
-          tooltipDescription="Each time you pick a new character, personality, or scenario"
+          tooltipDescription={
+            userData?.key_metrics_details?.scenarios_played ??
+            "Each time you pick a new character, personality, or scenario"
+          }
         />
         <StatCard
           label="Growth Streak"

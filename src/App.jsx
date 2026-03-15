@@ -18,11 +18,14 @@ export default function App({ userId }) {
   const [isMoveHovering, setIsMoveHovering] = useState(false);
 
   const { userData, loading: loadingDashboard } = useDashboardData(userId);
-  const { getMovesForFocusArea, loading: loadingRiqs } = useRiqs();
+  const { getMovesForFocusArea, loading: loadingRiqs } = useRiqs(
+    userData?.userid ?? userId ?? "24eba44c-10c0-47d0-a293-9c02b7c3ec9a"
+  );
   const { wingsUnlocked, butterflyState, allUnlocked } =
     useGrowthProgress(userData?.focus_area, userData?.practice_all_unlocked);
 
-  const movesForSelectedArea = getMovesForFocusArea(selectedFocusArea);
+  const { moves: movesForSelectedArea, colors: moveColors } =
+    getMovesForFocusArea(selectedFocusArea);
   const selectedFocusAreaName = FOCUS_AREAS[selectedFocusArea] ?? null;
 
   const handleStartPractice = () => {
@@ -69,7 +72,7 @@ export default function App({ userId }) {
           <ConversationMoves
             moves={movesForSelectedArea}
             loading={loadingRiqs}
-            moveColors={userData?.conversation_moves_color}
+            moveColors={moveColors}
             onMoveHoverChange={setIsMoveHovering}
           />
           <PracticeCard

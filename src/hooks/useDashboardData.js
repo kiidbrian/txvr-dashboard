@@ -163,7 +163,7 @@ async function callDashboardMetricsFunction(payload) {
   return data;
 }
 
-export function useDashboardData(userId = "user1") {
+export function useDashboardData(userId = "24eba44c-10c0-47d0-a293-9c02b7c3ec9a") {
   const [dashboardData, setDashboardData] = useState([]);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -174,7 +174,7 @@ export function useDashboardData(userId = "user1") {
       setLoading(true);
       setError(null);
 
-      const payload = { userId, user_id: userId, userid: userId };
+      const payload = {userId, user_id: userId, userid: userId};
       try {
         const data = await callDashboardMetricsFunction(payload);
         const rawUserData = pickUserObject(data, userId);
@@ -193,5 +193,5 @@ export function useDashboardData(userId = "user1") {
     fetchDashboardData();
   }, [userId]);
 
-  return { dashboardData, userData, loading, error };
+  return {dashboardData, userData, loading, error};
 }

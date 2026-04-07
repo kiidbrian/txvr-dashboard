@@ -22,3 +22,14 @@ export function formatDuration(secondsValue) {
   if (minutes === 0) return `${hours}h`;
   return `${hours}h ${minutes}m`;
 }
+
+export function getInitials(name, fallback = "L") {
+  const trimmed = String(name ?? "").trim();
+  if (!trimmed) return fallback;
+  const letters = trimmed
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("");
+  return letters ? letters.toUpperCase() : fallback;
+}

@@ -1,9 +1,16 @@
+import { getInitials } from "@/lib/utils";
+
 export function WelcomeBanner({ name = "Learner" }) {
+  const initials = getInitials(name, "L");
   return (
     <div className="mb-10">
       <div className="flex items-center gap-3">
-        <div className="w-14 h-14 rounded-full bg-linear-to-br from-white-600 to-pink-600 flex items-center justify-center text-white text-2xl border-2 border-(--brand-primary) border-b-2">
-          👨🏾
+        <div
+          className="w-14 h-14 rounded-full bg-linear-to-br from-white-600 to-pink-600 flex items-center justify-center text-white text-2xl border-2 border-(--brand-primary) border-b-2"
+          role="img"
+          aria-label={`Avatar for ${name}`}
+        >
+          <span aria-hidden="true">{initials || "L"}</span>
         </div>
         <div>
           <h2 className="text-lg text-(--brand-primary) font-bold">

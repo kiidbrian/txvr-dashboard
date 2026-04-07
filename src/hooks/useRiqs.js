@@ -70,7 +70,7 @@ function normalizeCmScores(payload) {
     }));
 }
 
-export function useRiqs(userId = "24eba44c-10c0-47d0-a293-9c02b7c3ec9a") {
+export function useRiqs(userId = "5c41ff27-5f47-48e7-88d8-9cd3d94cdf10") {
   const [riqs, setRiqs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -82,10 +82,10 @@ export function useRiqs(userId = "24eba44c-10c0-47d0-a293-9c02b7c3ec9a") {
 
       const functionName =
         import.meta.env.VITE_CM_SCORES_FUNCTION || DEFAULT_FUNCTION_NAME;
-      const payload = { userId, user_id: userId, userid: userId };
-      const { data, error: fetchError } = await supabase.functions.invoke(
+      const payload = {userId, user_id: userId, userid: userId};
+      const {data, error: fetchError} = await supabase.functions.invoke(
         functionName,
-        { body: payload }
+        {body: payload},
       );
       if (fetchError) {
         console.error("Supabase error:", fetchError);
@@ -115,24 +115,24 @@ export function useRiqs(userId = "24eba44c-10c0-47d0-a293-9c02b7c3ec9a") {
     const allowedLabelsNormalized = Array.isArray(allowedLabels)
       ? new Set(allowedLabels.map((label) => normalizeLabel(label)))
       : isMapping
-      ? new Set(Object.keys(mappingByNormalized))
-      : null;
+        ? new Set(Object.keys(mappingByNormalized))
+        : null;
     const filteredMoves =
       selectedIndex === 4
         ? riqs
         : allowedLabels
-        ? riqs.filter((move) =>
-            allowedLabelsNormalized?.has(normalizeLabel(move.label))
-          )
-        : riqs;
+          ? riqs.filter((move) =>
+              allowedLabelsNormalized?.has(normalizeLabel(move.label)),
+            )
+          : riqs;
     const displayMoves = filteredMoves.map((move) => ({
       label: isMapping
-        ? mappingByNormalized[normalizeLabel(move.label)] ?? move.label
+        ? (mappingByNormalized[normalizeLabel(move.label)] ?? move.label)
         : move.label,
       colors: move.colors,
     }));
     const sortedDisplayMoves = [...displayMoves].sort((a, b) =>
-      a.label.localeCompare(b.label)
+      a.label.localeCompare(b.label),
     );
     return {
       moves: sortedDisplayMoves.map((move) => move.label),
@@ -140,5 +140,5 @@ export function useRiqs(userId = "24eba44c-10c0-47d0-a293-9c02b7c3ec9a") {
     };
   };
 
-  return { riqs, getMovesForFocusArea, loading, error };
+  return {riqs, getMovesForFocusArea, loading, error};
 }

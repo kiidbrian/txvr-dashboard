@@ -15,7 +15,7 @@ function resolveInitialUserId(mountNode) {
   const fromGlobal = window.TVXR_DASHBOARD_USER_ID;
   const fromQuery = new URLSearchParams(window.location.search).get("userId");
 
-  return fromContainer || fromGlobalConfig || fromGlobal || fromQuery || "24eba44c-10c0-47d0-a293-9c02b7c3ec9a";
+  return fromContainer || fromGlobalConfig || fromGlobal || fromQuery || "5c41ff27-5f47-48e7-88d8-9cd3d94cdf10";
 }
 
 function DashboardRoot() {

@@ -1,7 +1,8 @@
-import { Flame, TrendingUp, ThumbsUp, Target, Star } from "lucide-react";
+import { TrendingUp, ThumbsUp, Target, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StatCard } from "./StatCard";
 import { Skeleton } from "./Skeleton";
+import { formatDuration } from "@/lib/utils";
 
 export function StatsGrid({ userData, loading }) {
   if (loading) {
@@ -37,7 +38,7 @@ export function StatsGrid({ userData, loading }) {
         <StatCard
           label="Total Attempts"
           value={userData?.total_attempts || 0}
-          subtitle="This week"
+          subtitle="Live to Date"
           icon={Target}
           iconColor="text-(--brand-primary)"
           tooltipDescription={
@@ -47,8 +48,8 @@ export function StatsGrid({ userData, loading }) {
         />
         <StatCard
           label="Time Practicing"
-          value={userData?.time_practicing || 0}
-          subtitle="This week"
+          value={formatDuration(userData?.time_practicing || 0)}
+          subtitle="Live to Date"
           icon={TrendingUp}
           iconColor="text-(--brand-primary)"
           tooltipDescription={

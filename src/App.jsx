@@ -19,7 +19,7 @@ export default function App({ userId }) {
 
   const { userData, loading: loadingDashboard } = useDashboardData(userId);
   const { getMovesForFocusArea, loading: loadingRiqs } = useRiqs(
-    userData?.userid ?? userId ?? "24eba44c-10c0-47d0-a293-9c02b7c3ec9a"
+    userData?.userid ?? userId ?? "5c41ff27-5f47-48e7-88d8-9cd3d94cdf10"
   );
   const { wingsUnlocked, butterflyState, allUnlocked } =
     useGrowthProgress(userData?.focus_area, userData?.practice_all_unlocked);

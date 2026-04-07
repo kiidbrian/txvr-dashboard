@@ -54,9 +54,15 @@ function normalizeGrowthLevel(level) {
     .toLowerCase();
   if (value === "locked") return 1;
   if (value === "beginning") return 1;
+  if (value === "Beginning") return 1;
   if (value === "developing") return 2;
+  if (value === "Growing") return 2;
   if (value === "improving") return 3;
+  if (value === "Getting stronger") return 3;
   if (value === "proficient") return 4;
+  if (value === "Taking shape") return 4;
+  if (value === "Fully expressed") return 5;
+  if (value === "fully expressed") return 5;
   if (value === "mastery" || value === "master") return 5;
   return 1;
 }
@@ -370,9 +376,7 @@ async function callStreakCountFunction(payload) {
   return data;
 }
 
-export function useDashboardData(
-  userId = "24eba44c-10c0-47d0-a293-9c02b7c3ec9a",
-) {
+export function useDashboardData(userId = "5c41ff27-5f47-48e7-88d8-9cd3d94cdf10") {
   const [dashboardData, setDashboardData] = useState([]);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);

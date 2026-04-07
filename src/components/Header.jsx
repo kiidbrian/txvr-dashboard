@@ -18,10 +18,10 @@ export function Header() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-4">
-          <Button className="bg-(--brand-button) hover:bg-(--brand-button-hover) text-white border-none rounded-full px-5">
+          {/* <Button className="bg-(--brand-button) hover:bg-(--brand-button-hover) text-white border-none rounded-full px-5">
             <span className="text-sm">Level:</span>
             <span className="font-semibold ml-1">Metamorphosis ⚡</span>
-          </Button>
+          </Button> */}
           <button type="button" className="text-gray-400 hover:text-gray-600 transition">
             <Settings className="h-5 w-5" />
           </button>
